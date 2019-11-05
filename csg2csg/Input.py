@@ -28,8 +28,11 @@ class InputDeck:
     cell_card_collection = {}
     surface_card_collection = {}
     
-    def __init__(self, filename):
+    """ Constructor
+    """
+    def __init__(self, filename, quick = False):
         self.filename = filename
+        self.quick_process = quick
 
     # find the cell with a given id
     def find_cell(self, cell_id):
