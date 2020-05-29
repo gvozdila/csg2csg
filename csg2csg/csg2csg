@@ -4,6 +4,7 @@ from csg2csg.MCNPInput import MCNPInput
 from csg2csg.SerpentInput import SerpentInput
 from csg2csg.OpenMCInput import OpenMCInput
 from csg2csg.FLUKAInput import FLUKAInput
+from csg2csg.KENOVI_Input import KenoviInput
 from csg2csg.PhitsInput import PhitsInput
 
 # for debug info
@@ -59,7 +60,7 @@ def main(argv):
     
 
     if "all" in args.output:
-        codes = ["mcnp","serpent","openmc","phits","fluka"]
+        codes = ["mcnp","serpent","openmc","phits","fluka", "kenovi"]
     else:
         codes = args.output
 
@@ -111,6 +112,12 @@ def main(argv):
             fluka.from_input(input)
             mkdir("fluka")
             fluka.write_fluka("fluka/fluka.inp")
+        if "kenovi" in code:
+            print("Producing KenoVI output...")
+            kenovi = KenoviInput()
+            kenovi.from_input(input)
+            mkdir("kenovi")
+            kenovi.write_kenovi("kenovi/kenovi.inp")
     
     logging.info("Finshed")
 
